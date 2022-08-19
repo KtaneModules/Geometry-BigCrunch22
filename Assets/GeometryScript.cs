@@ -309,13 +309,7 @@ public class GeometryScript : MonoBehaviour
 			Debug.LogFormat("[Geometry #{0}] The serial number {1} contains a letter from \"MATH\"", moduleId, Bomb.GetSerialNumber());
 		}
 		
-		if (ValidRules.EqualsAny("", "1234"))
-		{
-			CorrectAnswer = Wafer.ToString();
-			Debug.LogFormat("[Geometry #{0}] The \"N\" rule applied. The correct answer is {1}", moduleId, CorrectAnswer);
-		}
-		
-		else if (ValidRules.EqualsAny("4", "3", "23", "34", "13"))
+		if (ValidRules.EqualsAny("234", "3", "34", "24"))
 		{
 			Wafer = Wafer / 4M;
 			string[] Canoen = Wafer.ToString().Split('.');
@@ -327,7 +321,13 @@ public class GeometryScript : MonoBehaviour
 			Debug.LogFormat("[Geometry #{0}] The \"P\" rule applied. The correct answer is {1}", moduleId, CorrectAnswer);
 		}
 		
-		else if (ValidRules.EqualsAny("24", "14", "123"))
+		else if (ValidRules.EqualsAny("124", "4", "14", "13"))
+		{
+			CorrectAnswer = Wafer.ToString().Split('.')[0];
+			Debug.LogFormat("[Geometry #{0}] The \"W\" rule applied. The correct answer is {1}", moduleId, CorrectAnswer);
+		}
+		
+		else if (ValidRules.EqualsAny("134", "1", "23", "12"))
 		{
 			string[] Canoen = Wafer.ToString().Split('.');
 			if (Canoen.Length == 1)
@@ -347,8 +347,8 @@ public class GeometryScript : MonoBehaviour
 		
 		else
 		{
-			CorrectAnswer = Wafer.ToString().Split('.')[0];
-			Debug.LogFormat("[Geometry #{0}] The \"W\" rule applied. The correct answer is {1}", moduleId, CorrectAnswer);
+			CorrectAnswer = Wafer.ToString();
+			Debug.LogFormat("[Geometry #{0}] The \"N\" rule applied. The correct answer is {1}", moduleId, CorrectAnswer);
 		}
 		FastSpin = StartCoroutine(SpinRealquick());
 		Interactable = true;
