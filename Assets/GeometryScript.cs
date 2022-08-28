@@ -336,11 +336,8 @@ public class GeometryScript : MonoBehaviour
 			}
 			else
 			{
-				CorrectAnswer = Canoen[1];
-				while (CorrectAnswer[0].ToString() == "0" && CorrectAnswer.Length > 1)
-				{
-					CorrectAnswer = CorrectAnswer.Remove(0);
-				}
+				CorrectAnswer = Canoen[1].TrimStart(new Char[] { '0' } );
+				CorrectAnswer = CorrectAnswer == "" ? "0" : CorrectAnswer;
 			}
 			Debug.LogFormat("[Geometry #{0}] The \"I\" rule applied. The correct answer is {1}", moduleId, CorrectAnswer);
 		}
